@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FinancialProvision.Provision.Application.DTOs
+﻿namespace FinancialProvision.Provision.Application.DTOs
 {
     public class ProvisaoDevolucaoDto
     {

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FinancialProvision.API;
 
-public static class Program
+public partial class Program
 {
     public static async Task Main(string[] args)
     {
@@ -25,12 +25,15 @@ public static class Program
         builder.Services.AddApplication(builder.Configuration);
         builder.Services.AddRepository(builder.Configuration);
 
-        // DbContext MySQL
-        builder.Services.AddDbContext<FinancialProvisionDbContext>(options =>
-            options.UseMySql(
-                connectionString,
-                ServerVersion.AutoDetect(connectionString)
-            ));
+        // DbContext MySQL - só se não for ambiente de teste
+        if (!builder.Environment.IsEnvironment("Testing"))
+        {
+            builder.Services.AddDbContext<FinancialProvisionDbContext>(options =>
+                options.UseMySql(
+                    connectionString,
+                    ServerVersion.AutoDetect(connectionString)
+                ));
+        }
 
         var app = builder.Build();
 

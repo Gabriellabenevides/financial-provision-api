@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using FinancialProvision.Provision.Infrastructure.Persistence.Context;
 using FinancialProvision.Provision.Domain.Entities;
+using FinancialProvision.Provision.Application.DTOs;
 
 namespace FinancialProvision.API.Controllers;
 
@@ -11,29 +12,54 @@ public class ProvisaoDevolucaoController : ControllerBase
 {
     private readonly FinancialProvisionDbContext _context;
 
-    public ProvisaoDevolucaoController(FinancialProvisionDbContext context)
+    public ProvisaoDevolucaoController(
+        FinancialProvisionDbContext context)
     {
         _context = context;
     }
 
-    /// <summary>
-    /// Lista todas as provisões de devolução
-    /// </summary>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ProvisaoDevolucao>>> GetAll()
+    public async Task<ActionResult<IEnumerable<ReadProvisaoDevolucaoDto>>> GetAll()
     {
-        var result = await _context.ProvisoesDevolucao.ToListAsync();
+        var result =
+            await _context.ProvisoesDevolucao
+            .Select(x => new ReadProvisaoDevolucaoDto
+            {
+                Id = x.Id,
+                Mes = x.Mes,
+                Ano = x.Ano,
+                ValorPrevisto = x.ValorPrevisto,
+                ValorUtilizado = x.ValorUtilizado,
+                SaldoDisponivel =
+                    x.ValorPrevisto - x.ValorUtilizado,
+                Descricao = x.Descricao,
+                DataCriacao = x.DataCriacao
+            })
+            .ToListAsync();
 
         return Ok(result);
     }
 
-    /// <summary>
-    /// Busca provisão de devolução por Id
-    /// </summary>
+
     [HttpGet("{id}")]
-    public async Task<ActionResult<ProvisaoDevolucao>> GetById(int id)
+    public async Task<ActionResult<ReadProvisaoDevolucaoDto>> GetById(int id)
     {
-        var entity = await _context.ProvisoesDevolucao.FindAsync(id);
+        var entity =
+            await _context.ProvisoesDevolucao
+            .Where(x => x.Id == id)
+            .Select(x => new ReadProvisaoDevolucaoDto
+            {
+                Id = x.Id,
+                Mes = x.Mes,
+                Ano = x.Ano,
+                ValorPrevisto = x.ValorPrevisto,
+                ValorUtilizado = x.ValorUtilizado,
+                SaldoDisponivel =
+                    x.ValorPrevisto - x.ValorUtilizado,
+                Descricao = x.Descricao,
+                DataCriacao = x.DataCriacao
+            })
+            .FirstOrDefaultAsync();
 
         if (entity == null)
             return NotFound();
@@ -41,44 +67,57 @@ public class ProvisaoDevolucaoController : ControllerBase
         return Ok(entity);
     }
 
-    /// <summary>
-    /// Cria nova provisão de devolução
-    /// </summary>
+
     [HttpPost]
-    public async Task<ActionResult> Create([FromBody] ProvisaoDevolucao entity)
+    public async Task<ActionResult> Create(
+        CreateProvisaoDevolucaoDto dto)
     {
+        var entity =
+            new ProvisaoDevolucao(
+                dto.Mes,
+                dto.Ano,
+                dto.ValorPrevisto,
+                dto.Descricao);
+
         _context.ProvisoesDevolucao.Add(entity);
 
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetById), new { id = entity.Id }, entity);
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = entity.Id },
+            entity);
     }
 
-    /// <summary>
-    /// Atualiza provisão de devolução
-    /// </summary>
+
     [HttpPut("{id}")]
-    public async Task<ActionResult> Update(int id, [FromBody] ProvisaoDevolucao request)
+    public async Task<ActionResult> Update(
+        int id,
+        UpdateProvisaoDevolucaoDto dto)
     {
-        var entity = await _context.ProvisoesDevolucao.FindAsync(id);
+        var entity =
+            await _context.ProvisoesDevolucao
+            .FindAsync(id);
 
         if (entity == null)
             return NotFound();
 
-        entity.AtualizarValor(request.ValorPrevisto, request.Descricao);
+        entity.AtualizarValor(
+            dto.ValorPrevisto,
+            dto.Descricao);
 
         await _context.SaveChangesAsync();
 
         return NoContent();
     }
 
-    /// <summary>
-    /// Remove provisão de devolução
-    /// </summary>
+
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {
-        var entity = await _context.ProvisoesDevolucao.FindAsync(id);
+        var entity =
+            await _context.ProvisoesDevolucao
+            .FindAsync(id);
 
         if (entity == null)
             return NotFound();
