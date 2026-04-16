@@ -21,11 +21,10 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\FinancialProvision.Provision.Domain\FinancialProvision.Provision.Domain.csproj" />
-    <ProjectReference Include="..\FinancialProvision.API\FinancialProvision.Provision.API.csproj" />
-    <ProjectReference Include="..\..\src\FinancialProvision.Provision.API\FinancialProvision.Provision.API.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\FinancialProvision.Provision.Domain\FinancialProvision.Provision.Domain.csproj" />
+		<ProjectReference Include="..\..\src\FinancialProvision.Provision.API\FinancialProvision.Provision.API.csproj" />
+	</ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
