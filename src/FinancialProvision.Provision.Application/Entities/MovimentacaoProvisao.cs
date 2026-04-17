@@ -1,4 +1,4 @@
-﻿namespace FinancialProvision.Provision.Domain.Entities;
+﻿namespace FinancialProvision.Provision.Application.Entities;
 
 public class MovimentacaoProvisao
 {

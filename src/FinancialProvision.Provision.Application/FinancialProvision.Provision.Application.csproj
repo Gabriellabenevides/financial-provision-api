@@ -25,8 +25,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.6" />
   </ItemGroup>
 
-	  <ItemGroup>
-		  <ProjectReference Include="..\FinancialProvision.Provision.Domain\FinancialProvision.Provision.Domain.csproj" />
-	  </ItemGroup>
-
 </Project>

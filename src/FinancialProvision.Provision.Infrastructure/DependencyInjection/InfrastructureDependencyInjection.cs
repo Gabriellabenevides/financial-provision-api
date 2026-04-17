@@ -1,5 +1,5 @@
-﻿using FinancialProvision.Provision.Domain.Interfaces;
-using FinancialProvision.Provision.Domain.Interfaces.Repositories;
+﻿using FinancialProvision.Provision.Application.Interfaces;
+using FinancialProvision.Provision.Application.Interfaces.Repositories;
 using FinancialProvision.Provision.Infrastructure.Persistence.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

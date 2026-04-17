@@ -1,6 +1,6 @@
-﻿using FinancialProvision.Provision.Domain.Entities;
+﻿using FinancialProvision.Provision.Application.Entities;
 
-namespace FinancialProvision.Provision.Domain.Interfaces;
+namespace FinancialProvision.Provision.Application.Interfaces;
 
 public interface IMovimentacaoProvisaoRepository
 {

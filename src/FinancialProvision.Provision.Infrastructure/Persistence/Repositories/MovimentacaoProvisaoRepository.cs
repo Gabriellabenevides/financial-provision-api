@@ -1,5 +1,5 @@
-﻿using FinancialProvision.Provision.Domain.Entities;
-using FinancialProvision.Provision.Domain.Interfaces;
+﻿using FinancialProvision.Provision.Application.Entities;
+using FinancialProvision.Provision.Application.Interfaces;
 using FinancialProvision.Provision.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 

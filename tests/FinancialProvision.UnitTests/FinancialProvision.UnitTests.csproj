@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="..\..\src\FinancialProvision.Provision.Domain\FinancialProvision.Provision.Domain.csproj" />
+    <ProjectReference Include="..\..\src\FinancialProvision.Provision.Application\FinancialProvision.Provision.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>

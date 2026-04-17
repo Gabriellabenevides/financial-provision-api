@@ -1,4 +1,4 @@
-﻿using FinancialProvision.Provision.Domain.Entities;
+﻿using FinancialProvision.Provision.Application.Entities;
 
 namespace FinancialProvision.UnitTests.Domain.Entities;
 

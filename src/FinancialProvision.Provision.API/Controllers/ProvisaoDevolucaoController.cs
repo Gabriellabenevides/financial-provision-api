@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using FinancialProvision.Provision.Application.DTOs;
+using FinancialProvision.Provision.Application.Entities;
 using FinancialProvision.Provision.Infrastructure.Persistence.Context;
-using FinancialProvision.Provision.Domain.Entities;
-using FinancialProvision.Provision.Application.DTOs;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinancialProvision.API.Controllers;
 

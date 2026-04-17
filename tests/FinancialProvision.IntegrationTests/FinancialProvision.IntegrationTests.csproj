@@ -22,7 +22,6 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\src\FinancialProvision.Provision.Domain\FinancialProvision.Provision.Domain.csproj" />
 		<ProjectReference Include="..\..\src\FinancialProvision.Provision.API\FinancialProvision.Provision.API.csproj" />
 	</ItemGroup>
 

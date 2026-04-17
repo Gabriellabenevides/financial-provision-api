@@ -1,8 +1,8 @@
 ﻿using FinancialProvision.Provision.Application.DTOs;
+using FinancialProvision.Provision.Application.Entities;
+using FinancialProvision.Provision.Application.Interfaces;
+using FinancialProvision.Provision.Application.Interfaces.Repositories;
 using FinancialProvision.Provision.Application.Interfaces.Services;
-using FinancialProvision.Provision.Domain.Entities;
-using FinancialProvision.Provision.Domain.Interfaces;
-using FinancialProvision.Provision.Domain.Interfaces.Repositories;
 
 namespace FinancialProvision.Provision.Application.Services;
 
