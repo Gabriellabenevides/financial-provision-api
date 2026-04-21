@@ -14,6 +14,6 @@
 
         public decimal SaldoDisponivel { get; set; }
 
-        public string Descricao { get; set; }
+        public string? Descricao { get; set; }
     }
 }
