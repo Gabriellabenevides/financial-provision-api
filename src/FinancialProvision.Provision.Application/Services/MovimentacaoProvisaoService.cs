@@ -11,9 +11,7 @@ public class MovimentacaoProvisaoService : IMovimentacaoProvisaoService
     private readonly IMovimentacaoProvisaoRepository _movRepository;
     private readonly IProvisaoDevolucaoRepository _provRepository;
 
-    public MovimentacaoProvisaoService(
-        IMovimentacaoProvisaoRepository movRepository,
-        IProvisaoDevolucaoRepository provRepository)
+    public MovimentacaoProvisaoService(IMovimentacaoProvisaoRepository movRepository, IProvisaoDevolucaoRepository provRepository)
     {
         _movRepository = movRepository;
         _provRepository = provRepository;

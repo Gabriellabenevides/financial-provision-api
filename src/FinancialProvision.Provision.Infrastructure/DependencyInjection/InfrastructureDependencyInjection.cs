@@ -8,9 +8,7 @@ namespace FinancialProvision.Provision.Infrastructure.DependencyInjection;
 
 public static class InfrastructureDependencyInjection
 {
-    public static IServiceCollection AddRepository(
-        this IServiceCollection services,
-        IConfiguration configuration)
+    public static IServiceCollection AddRepository(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IProvisaoDevolucaoRepository, ProvisaoDevolucaoRepository>();
         services.AddScoped<IMovimentacaoProvisaoRepository, MovimentacaoProvisaoRepository>();

@@ -9,8 +9,7 @@ public class MovimentacaoProvisaoRepository : IMovimentacaoProvisaoRepository
 {
     private readonly FinancialProvisionDbContext _context;
 
-    public MovimentacaoProvisaoRepository(
-        FinancialProvisionDbContext context)
+    public MovimentacaoProvisaoRepository(FinancialProvisionDbContext context)
     {
         _context = context;
     }

@@ -26,6 +26,12 @@ namespace FinancialProvision.Provision.Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(ProvisaoDevolucao provisao)
+        {
+            _context.ProvisoesDevolucao.Remove(provisao);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<ProvisaoDevolucao?> GetByIdAsync(int id)
         {
             return await _context.ProvisoesDevolucao

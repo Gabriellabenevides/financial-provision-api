@@ -13,5 +13,6 @@ namespace FinancialProvision.Provision.Application.Interfaces.Repositories
         Task<ProvisaoDevolucao?> GetByMesAnoAsync(int mes, int ano);
 
         Task<IEnumerable<ProvisaoDevolucao>> GetAllAsync();
+        Task DeleteAsync(ProvisaoDevolucao provisao);
     }
 }
