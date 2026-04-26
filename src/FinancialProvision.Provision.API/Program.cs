@@ -1,5 +1,6 @@
 using FinancialProvision.Provision.Application.DependencyInjection;
 using FinancialProvision.Provision.Infrastructure.DependencyInjection;
+using FinancialProvision.Provision.Infrastructure.Messaging.Consumers;
 using FinancialProvision.Provision.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,18 +15,21 @@ public partial class Program
         var connectionString =
             builder.Configuration.GetConnectionString("FinancialProvisionConnection");
 
+        if (string.IsNullOrEmpty(connectionString))
+            throw new Exception("Connection string não encontrada");
+
         // Controllers
         builder.Services.AddControllers();
 
-        // Swagger padrão
+        // Swagger
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        // Dependency Injection das camadas
+        // Dependency Injection
         builder.Services.AddApplication(builder.Configuration);
         builder.Services.AddRepository(builder.Configuration);
 
-        // DbContext MySQL - só se não for ambiente de teste
+        // DbContext
         if (!builder.Environment.IsEnvironment("Testing"))
         {
             builder.Services.AddDbContext<FinancialProvisionDbContext>(options =>
@@ -36,6 +40,13 @@ public partial class Program
         }
 
         var app = builder.Build();
+
+        //INICIA O CONSUMER DA PROVISION
+        var consumer = new DevolucaoAprovadaConsumer(
+            app.Services.GetRequiredService<IServiceScopeFactory>()
+        );
+
+        _ = Task.Run(() => consumer.Consumir());
 
         // Swagger
         app.UseSwagger();

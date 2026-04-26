@@ -1,4 +1,6 @@
-﻿namespace FinancialProvision.Provision.Application.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FinancialProvision.Provision.Application.DTOs;
 
 public class CreateMovimentacaoDto
 {
@@ -6,5 +8,6 @@ public class CreateMovimentacaoDto
 
     public decimal Valor { get; set; }
 
-    public string Descricao { get; set; }
+    [Required]
+    public required string Descricao { get; set; }
 }

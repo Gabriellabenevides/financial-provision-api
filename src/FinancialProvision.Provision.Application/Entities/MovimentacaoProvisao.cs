@@ -8,11 +8,11 @@ public class MovimentacaoProvisao
 
     public decimal Valor { get; private set; }
 
-    public string Descricao { get; private set; }
+    public string Descricao { get; private set; } = null!;
 
     public DateTime DataCriacao { get; private set; }
 
-    public ProvisaoDevolucao ProvisaoDevolucao { get; private set; }
+    public ProvisaoDevolucao ProvisaoDevolucao { get; private set; } = null!;
 
     private MovimentacaoProvisao() { }
 
