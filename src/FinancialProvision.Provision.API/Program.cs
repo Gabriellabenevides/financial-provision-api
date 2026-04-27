@@ -2,6 +2,7 @@ using FinancialProvision.Provision.Application.DependencyInjection;
 using FinancialProvision.Provision.Infrastructure.DependencyInjection;
 using FinancialProvision.Provision.Infrastructure.Messaging.Consumers;
 using FinancialProvision.Provision.Infrastructure.Persistence.Context;
+using FinancialProvision.Provision.Infrastructure.Workers;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinancialProvision.API;
@@ -39,16 +40,14 @@ public partial class Program
                 ));
         }
 
+        // Consumer via DI
+        builder.Services.AddSingleton<DevolucaoAprovadaConsumer>();
+
+        // Worker
+        builder.Services.AddHostedService<DevolucaoAprovadaWorker>();
+
         var app = builder.Build();
 
-        //INICIA O CONSUMER DA PROVISION
-        var consumer = new DevolucaoAprovadaConsumer(
-            app.Services.GetRequiredService<IServiceScopeFactory>()
-        );
-
-        _ = Task.Run(() => consumer.Consumir());
-
-        // Swagger
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {

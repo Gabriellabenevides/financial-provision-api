@@ -5,8 +5,7 @@ namespace FinancialProvision.Provision.Infrastructure.Persistence.Context
 {
     public class FinancialProvisionDbContext : DbContext
     {
-        public FinancialProvisionDbContext(DbContextOptions<FinancialProvisionDbContext> options)
-            : base(options)
+        public FinancialProvisionDbContext(DbContextOptions<FinancialProvisionDbContext> options) : base(options)
         {
         }
 
